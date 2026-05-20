@@ -5,6 +5,11 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 export default function LobbyClient({ bets }: { bets: any[] }) {
   const [filter, setFilter] = useState('All');
+  const [mounted, setMounted] = useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const filteredBets = filter === 'All' ? bets : bets.filter(b => b.type === filter);
 
@@ -53,7 +58,17 @@ export default function LobbyClient({ bets }: { bets: any[] }) {
           >
             <span style={{ fontSize: '1.2rem' }}>💳</span> Buy USDC (Fiat)
           </button>
-          <ConnectButton showBalance={false} />
+          {mounted ? (
+            <ConnectButton showBalance={false} />
+          ) : (
+            <div style={{ 
+              height: '42px', 
+              width: '150px', 
+              background: 'rgba(255,255,255,0.05)', 
+              borderRadius: '12px',
+              border: '1px solid var(--border-color)'
+            }}></div>
+          )}
         </div>
       </header>
 
