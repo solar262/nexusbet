@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  wallet    String?  @unique
+  email     String?  @unique
+  name      String?
+  createdAt DateTime @default(now())
+  
+  // Relations
+  betsCreated Bet[]    @relation("Maker")
+  wagers      Wager[]
+  balances    Balance[]
+}
+
+model Balance {
+  id       String @id @default(cuid())
+  userId   String
+  user     User   @relation(fields: [userId], references: [id])
+  currency String // e.g., "USDC", "FIAT_USD"
+  amount   Float  @default(0)
+  
+  @@unique([userId, currency])
+}
+
+model Bet {
+  id          String   @id @default(cuid())
+  type        String   // "POOL" or "ONE_V_ONE"
+  category    String   // Sports, Crypto, Custom
+  title       String
+  description String?
+  status      String   @default("OPEN")
+  closesAt    DateTime
+  resolvedAt  DateTime?
+  
+  // For 1v1 bets
+  makerId     String?
+  maker       User?    @relation("Maker", fields: [makerId], references: [id])
+  makerStake  Float?
+  takerOdds   Float?   // Odds offered to the taker
+  
+  // Relations
+  options     BetOption[]
+  wagers      Wager[]
+  
+  createdAt   DateTime @default(now())
+}
+
+model BetOption {
+  id      String  @id @default(cuid())
+  betId   String
+  bet     Bet     @relation(fields: [betId], references: [id])
+  label   String  // e.g., "Yes", "No", "Lakers", "Nuggets"
+  
+  wagers  Wager[]
+}
+
+model Wager {
+  id        String    @id @default(cuid())
+  betId     String
+  bet       Bet       @relation(fields: [betId], references: [id])
+  optionId  String?   // For Pool bets
+  option    BetOption? @relation(fields: [optionId], references: [id])
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  
+  amount    Float     // Amount wagered in USDC
+  lockedOdds Float?   // Only used for 1v1 bets, the odds they locked in
+  
+  status    String    @default("PENDING")
+  createdAt DateTime  @default(now())
+}
