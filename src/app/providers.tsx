@@ -8,7 +8,8 @@ import {
 } from '@rainbow-me/rainbowkit';
 import '@rainbow-me/rainbowkit/styles.css';
 import { WagmiProvider } from 'wagmi';
-import { polygonAmoy, baseSepolia } from 'wagmi/chains';
+// @ts-ignore
+import { polygonAmoy, baseSepolia } from 'viem/chains';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
 // You will need to get a free projectId from https://cloud.walletconnect.com
