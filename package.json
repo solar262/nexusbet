@@ -1,38 +1,25 @@
 {
-  "name": "p2p-betting-platform",
-  "version": "0.1.0",
+  "name": "marketvibe-ai",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
-    "postinstall": "prisma generate",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:push": "prisma db push",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@prisma/client": "^5.22.0",
-    "@rainbow-me/rainbowkit": "^2.2.11",
-    "@stripe/stripe-js": "^9.6.0",
-    "@tanstack/react-query": "^5.100.11",
-    "dotenv": "^17.4.2",
     "next": "16.2.6",
-    "prisma": "^5.22.0",
     "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "stripe": "^22.1.1",
-    "viem": "^2.50.4",
-    "wagmi": "^2.19.5"
+    "react-dom": "19.2.4"
   },
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^7.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
-    "hardhat": "^3.4.5",
     "typescript": "^5"
   }
 }
