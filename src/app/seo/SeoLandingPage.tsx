@@ -35,7 +35,7 @@ export default function SeoLandingPage({
   title,
   description,
   primaryCta = 'Explore MarketVibe',
-  secondaryCta = 'See validation reports',
+  secondaryCta = 'Browse research pages',
   sections,
   cards,
   checklist,
@@ -52,7 +52,7 @@ export default function SeoLandingPage({
             <Link className="button primary" href="/">
               {primaryCta}
             </Link>
-            <Link className="button secondary" href="/validate/ai-email-marketing-for-fitness">
+            <Link className="button secondary" href="/business-opportunity-database">
               {secondaryCta}
             </Link>
           </div>
