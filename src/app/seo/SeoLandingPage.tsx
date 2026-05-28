@@ -22,6 +22,7 @@ export type SeoLandingPageProps = {
 };
 
 const relatedPages = [
+  { href: '/research', label: 'Research library' },
   { href: '/ai-business-ideas', label: 'AI business ideas' },
   { href: '/niche-validation', label: 'Niche validation' },
   { href: '/ai-automation-ideas', label: 'AI automation ideas' },
@@ -52,7 +53,7 @@ export default function SeoLandingPage({
             <Link className="button primary" href="/">
               {primaryCta}
             </Link>
-            <Link className="button secondary" href="/business-opportunity-database">
+            <Link className="button secondary" href="/research">
               {secondaryCta}
             </Link>
           </div>
@@ -79,7 +80,7 @@ export default function SeoLandingPage({
       </section>
 
       <section className="section alt">
-        <div className="content-grid">
+        <div className="content-grid" style={{ alignItems: 'start' }}>
           <article className="seo-copy">
             {sections.map((section) => (
               <section key={section.title} style={{ marginBottom: 34 }}>
@@ -90,7 +91,7 @@ export default function SeoLandingPage({
               </section>
             ))}
           </article>
-          <aside>
+          <aside style={{ position: 'sticky', top: 110 }}>
             <div className="popular">
               <h3>Validation checklist</h3>
               <p>Use this before committing time, ad spend, or engineering resources.</p>
@@ -110,6 +111,15 @@ export default function SeoLandingPage({
                   </Link>
                 ))}
               </div>
+            </div>
+            <div className="popular">
+              <h3>Next step</h3>
+              <p>
+                Turn the strongest signals into a short list of buyers, pain points, current alternatives, and one test you can run this week.
+              </p>
+              <Link className="button primary full" href="/">
+                Open MarketVibe
+              </Link>
             </div>
           </aside>
         </div>
@@ -134,6 +144,9 @@ export default function SeoLandingPage({
         <div className="hero-actions" style={{ justifyContent: 'center' }}>
           <Link className="button light" href="/">
             Open MarketVibe
+          </Link>
+          <Link className="button secondary" href="/research">
+            Browse research library
           </Link>
         </div>
       </section>
